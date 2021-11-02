@@ -1,0 +1,5 @@
+node_modules
+
+/dist/index.cjs.js
+/dist/index.es.js
+/types

@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+    paths-ignore:
+      - .gitignore
+      - .github/**
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - run: npm install
+
+      - run: npm run test
+
+      - run: npm run lint
+
+      - run: npm run format
+
+      - run: npm run build
+
+      - name: Publish to npm registry
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm run trypublish || true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}

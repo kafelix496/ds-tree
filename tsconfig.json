@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "ES2015",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "removeComments": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "react",
+
+    "strict": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+}
