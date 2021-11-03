@@ -57,7 +57,7 @@ export default class DsTree extends Common {
   public searchAll(
     predicateFn: (dsTreeNode: DsTreeNode) => boolean,
     options?: TraverseOption
-  ): Array<DsTreeNode> {
+  ): DsTreeNode[] {
     return this._searchAll(this.getRootNode(), predicateFn, options)
   }
 

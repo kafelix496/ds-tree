@@ -35,7 +35,7 @@ const initialValue2 = {
 }
 
 describe('test dsTree class methods', () => {
-  test('test getRootNode method & getValue method', () => {
+  test('getRootNode method & getValue method', () => {
     const dsTree = new DsTree(initialValue)
     const rootNode = dsTree.getRootNode()
 
@@ -66,7 +66,7 @@ describe('test dsTree class methods', () => {
 })
 
 describe('test dsTreeNode methods', () => {
-  test('test isRootNode method', () => {
+  test('isRootNode method', () => {
     const dsTree = new DsTree(initialValue)
 
     const rootNode = dsTree.getRootNode()
@@ -78,7 +78,7 @@ describe('test dsTreeNode methods', () => {
     expect(searchedNode!.isRootNode()).toBe(false)
   })
 
-  test('test getDepth method', () => {
+  test('getDepth method', () => {
     const dsTree = new DsTree(initialValue)
 
     const rootNode = dsTree.getRootNode()
@@ -119,8 +119,6 @@ describe('test dsTreeNode methods', () => {
         expect(node.getValue().name).toBe(expectNames[index])
       })
     })
-
-    expect(searchedNode!.getDepth()).toBe(2)
   })
 
   describe('test getParentNode method', () => {
@@ -232,7 +230,7 @@ describe('test dsTreeNode methods', () => {
     })
   })
 
-  test('test getChildren method', () => {
+  test('getChildren method', () => {
     const dsTree = new DsTree(initialValue)
 
     const rootNode = dsTree.getRootNode()

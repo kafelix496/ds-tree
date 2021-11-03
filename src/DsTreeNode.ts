@@ -12,12 +12,8 @@ export default class DsTreeNode extends Common {
 
     this._value = { ...value }
     this._config = config
-    if (
-      Array.isArray(
-        (this._value as TypeObject)[this._config.childrenPropertyName]
-      )
-    ) {
-      ;(this._value as TypeObject)[this._config.childrenPropertyName] = []
+    if (Array.isArray(this._value[this._config.childrenPropertyName])) {
+      this._value[this._config.childrenPropertyName] = []
     }
     this._parentNode = null
   }
