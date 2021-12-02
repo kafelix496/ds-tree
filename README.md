@@ -19,23 +19,8 @@ npm i @share-code/ds-tree
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello1',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello1' }]
 })
-
-const rootNode = dsTree.getRootNode()
 
 // Mutate your tree in here
 
@@ -57,7 +42,7 @@ You can find a node which satisfy the condition. This method use DFS algorithm t
 Return type: DsTreeNode | null
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 
 dsTree.search((node) => node.getValue().name === 'hello0') // default algorithm is 'preorder'
 dsTree.search((node) => node.getValue().name === 'hello0', {
@@ -77,7 +62,7 @@ You can find nodes which satisfy the condition. This method use DFS algorithm to
 Return type: DsTreeNode[]
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 
 dsTree.searchAll((node) => node.getValue().name === 'hello0') // default algorithm is 'preorder'
 dsTree.searchAll((node) => node.getValue().name === 'hello0', {
@@ -101,20 +86,7 @@ Return type: void
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello1',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello1' }]
 })
 
 // default algorithm is 'preorder'
@@ -125,7 +97,7 @@ dsTree.walk((node) => {
 // depth: 0
 // depth: 1
 // depth: 1
-// depth: 0
+// depth: 1
 
 dsTree.walk(
   (node) => {
@@ -137,7 +109,7 @@ dsTree.walk(
 // depth: 0
 // depth: 1
 // depth: 1
-// depth: 0
+// depth: 1
 
 dsTree.walk(
   (node) => {
@@ -161,7 +133,7 @@ You can get root node.
 Return type: DsTreeNode
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 
 dsTree.getRootNode()
 ```
@@ -173,7 +145,7 @@ You can parse tree form into dsTree form. This is useful when you add new child.
 Return type: DsTreeNode
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 
 dsTree.parse({ name: 'hello1', children: [] })
 ```
@@ -185,7 +157,7 @@ After finish your mutation with your tree, you can make original tree structure.
 Return type: object
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 
 dsTree.export() // return: { name: 'hello0', children: [] }
 ```
@@ -199,7 +171,7 @@ Check node is root node.
 Return type: boolean
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 const rootNode = dsTree.getRootNode()
 
 rootNode.isRootNode() // true
@@ -212,7 +184,7 @@ Get depth of node. Root node is 0.
 Return type: number
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 const rootNode = dsTree.getRootNode()
 
 rootNode.getDepth() // 0
@@ -229,25 +201,14 @@ const dsTree = new DsTree({
   name: 'hello0',
   children: [
     {
-      name: 'hello0-0',
-      children: []
+      name: 'hello0-0'
     },
     {
       name: 'hello0-1',
-      children: [
-        {
-          name: 'hello0-1-0',
-          children: []
-        },
-        {
-          name: 'hello0-1-1',
-          children: []
-        }
-      ]
+      children: [{ name: 'hello0-1-0' }, { name: 'hello0-1-1' }]
     },
     {
-      name: 'hello0-2',
-      children: []
+      name: 'hello0-2'
     }
   ]
 })
@@ -256,7 +217,7 @@ const searchedNode = dsTree.search(
   (node) => node.getValue().name === 'hello0-1-0'
 )
 
-searchedNode.getPath().forEach((node, index) => {
+searchedNode.getPath().forEach((node) => {
   console.log('node: ' + node.getValue().name)
 })
 
@@ -264,7 +225,7 @@ searchedNode.getPath().forEach((node, index) => {
 // hello0-1
 // hello0
 
-searchedNode.getPath(true).forEach((node, index) => {
+searchedNode.getPath(true).forEach((node) => {
   console.log('node: ' + node.getValue().name)
 })
 
@@ -282,10 +243,10 @@ Get node value
 Return type: object
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 const rootNode = dsTree.getRootNode()
 
-rootNode.getValue() // { name: 'hello0', children: [] }
+rootNode.getValue() // { name: 'hello0' }
 ```
 
 #### setValue(newValue: Partial<DsTreeNode> | ((currentValue: DsTreeNode) => DsTreeNode))
@@ -297,16 +258,16 @@ Set node value
 Return type: object
 
 ```typescript
-const dsTree = new DsTree({ name: 'hello0', children: [] })
+const dsTree = new DsTree({ name: 'hello0' })
 const rootNode = dsTree.getRootNode()
 
 // case 01
 rootNode.setValue({ name: 'hello7' })
-rootNode.getValue() // { name: 'hello7', children: [] }
+rootNode.getValue() // { name: 'hello7' }
 
 // case 02
 rootNode.setValue((prev) => ({ ...prev, name: 'hello77' }))
-rootNode.getValue() // { name: 'hello77', children: [] }
+rootNode.getValue() // { name: 'hello77' }
 ```
 
 ### getParentNode()
@@ -318,16 +279,7 @@ Return type: DsTreeNode | null
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }]
 })
 const rootNode = dsTree.getRootNode()
 
@@ -345,20 +297,7 @@ Return type: DsTreeNode[]
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello0-2',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello0-2' }]
 })
 const rootNode = dsTree.getRootNode()
 
@@ -366,22 +305,22 @@ rootNode
   .getChildren()[0]
   .getSiblings()
   .forEach((node) => {
-    console.log('node value: ' + node.getValue)
+    console.log('node value: ', node.getValue)
   })
 
-// node value: { name: 'hello0-1', children: [] }
-// node value: { name: 'hello0-2', children: [] }
+// node value: { name: 'hello0-1' }
+// node value: { name: 'hello0-2' }
 
 rootNode
   .getChildren()[0]
   .getSiblings(true)
   .forEach((node) => {
-    console.log('node value: ' + node.getValue)
+    console.log('node value: ', node.getValue)
   })
 
-// node value: { name: 'hello0-0', children: [] }
-// node value: { name: 'hello0-1', children: [] }
-// node value: { name: 'hello0-2', children: [] }
+// node value: { name: 'hello0-0' }
+// node value: { name: 'hello0-1' }
+// node value: { name: 'hello0-2' }
 ```
 
 #### getIndex()
@@ -393,20 +332,7 @@ Return type: number
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello0-2',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello0-2' }]
 })
 const rootNode = dsTree.getRootNode()
 
@@ -423,20 +349,7 @@ Return type: void
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello0-2',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello0-2' }]
 })
 const rootNode = dsTree.getRootNode()
 
@@ -444,14 +357,16 @@ rootNode.getChildren()[1].setIndex(0)
 
 console.log(dsTree.export())
 
-/* {
+/*
+{
   name: 'hello0',
   children: [{
     { name: 'hello0-1', children: [] },
     { name: 'hello0-0', children: [] },
     { name: 'hello0-2', children: [] }
   }]
-} */
+}
+*/
 ```
 
 #### isFirstChild()
@@ -463,33 +378,20 @@ Return type: boolean
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello0-2',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello0-2' }]
 })
 
 const searchedNode00 = dsTree.search(
   (node) => node.getValue().name === 'hello0-0'
 )
 
-searchedNode!.isFirstChild() // true
+searchedNode00!.isFirstChild() // true
 
 const searchedNode01 = dsTree.search(
   (node) => node.getValue().name === 'hello0-1'
 )
 
-searchedNode!.isFirstChild() // false
+searchedNode01!.isFirstChild() // false
 ```
 
 #### isLastChild()
@@ -501,33 +403,20 @@ Return type: boolean
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello0-2',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello0-2' }]
 })
 
 const searchedNode00 = dsTree.search(
   (node) => node.getValue().name === 'hello0-2'
 )
 
-searchedNode!.isLastChild() // true
+searchedNode00!.isLastChild() // true
 
 const searchedNode01 = dsTree.search(
   (node) => node.getValue().name === 'hello0-1'
 )
 
-searchedNode!.isLastChild() // false
+searchedNode01!.isLastChild() // false
 ```
 
 #### getChildren()
@@ -539,20 +428,7 @@ Return type: DsTreeNode[] | undefined | null
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello0-2',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello0-2' }]
 })
 const rootNode = dsTree.getRootNode()
 
@@ -574,24 +450,11 @@ Return type: void
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello0-2',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello0-2' }]
 })
 const rootNode = dsTree.getRootNode()
 
-rootNode.addChild(dsTree.parse({ name: 'hello0-3', children: [] }))
+rootNode.addChild({ name: 'hello0-3', children: [] })
 
 rootNode.getChildren().forEach((node) => {
   console.log('node name: ' + node.getValue().name)
@@ -612,24 +475,11 @@ Return type: void
 ```typescript
 const dsTree = new DsTree({
   name: 'hello0',
-  children: [
-    {
-      name: 'hello0-0',
-      children: []
-    },
-    {
-      name: 'hello0-1',
-      children: []
-    },
-    {
-      name: 'hello0-2',
-      children: []
-    }
-  ]
+  children: [{ name: 'hello0-0' }, { name: 'hello0-1' }, { name: 'hello0-2' }]
 })
 const rootNode = dsTree.getRootNode()
 
-rootNode.addChildAtIndex(dsTree.parse({ name: 'hello0-3', children: [] }), 1)
+rootNode.addChildAtIndex({ name: 'hello0-3', children: [] }, 1)
 
 rootNode.getChildren().forEach((node) => {
   console.log('node name: ' + node.getValue().name)
@@ -652,45 +502,34 @@ const dsTree = new DsTree({
   name: 'hello0',
   children: [
     {
-      name: 'hello0-0',
-      children: []
+      name: 'hello0-0'
     },
     {
       name: 'hello0-1',
-      children: [
-        {
-          name: 'hello0-1-0',
-          children: []
-        },
-        {
-          name: 'hello0-1-1',
-          children: []
-        }
-      ]
+      children: [{ name: 'hello0-1-0' }, { name: 'hello0-1-1' }]
     },
     {
-      name: 'hello0-2',
-      children: []
+      name: 'hello0-2'
     }
   ]
 })
 const rootNode = dsTree.getRootNode()
 
-const secondChild = rootNode.getChildren(0)[1].drop()
+const secondChild = rootNode.getChildren()![1].drop()
 
-console.log('secondChild parentNode: ' + secondChild.getParentNode())
+console.log('secondChild parentNode: ', secondChild.getParentNode())
 // secondChild parentNode: null
-console.log('secondChild name: ' + secondChild.getValue().name)
+console.log('secondChild name: ', secondChild.getValue().name)
 // secondChild name: hello0-1
 
-secondChild.getChildren().forEach((node) => {
-  console.log('node name: ' + node.getValue().name)
+secondChild.getChildren()!.forEach((node) => {
+  console.log('node name: ', node.getValue().name)
 })
 // node name: hello0-1-0
 // node name: hello0-1-1
 
-rootNode.getChildren().forEach((node) => {
-  console.log('node name: ' + node.getValue().name)
+rootNode.getChildren()!.forEach((node) => {
+  console.log('node name: ', node.getValue().name)
 })
 
 // node name: 'hello0-0'
