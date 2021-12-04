@@ -1,6 +1,6 @@
 {
   "name": "@share-code/ds-tree",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "data structure tree for js/ts",
   "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",

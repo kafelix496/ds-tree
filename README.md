@@ -305,7 +305,7 @@ rootNode
   .getChildren()[0]
   .getSiblings()
   .forEach((node) => {
-    console.log('node value: ', node.getValue)
+    console.log('node value: ', node.getValue())
   })
 
 // node value: { name: 'hello0-1' }
@@ -315,7 +315,7 @@ rootNode
   .getChildren()[0]
   .getSiblings(true)
   .forEach((node) => {
-    console.log('node value: ', node.getValue)
+    console.log('node value: ', node.getValue())
   })
 
 // node value: { name: 'hello0-0' }
